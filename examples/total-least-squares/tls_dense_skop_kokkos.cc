@@ -3,12 +3,6 @@
  *
  * A standalone example of Total Least Squares using Kokkos for data
  * initialization, plus Eigen for the SVD (no LAPACKE dependency).
- *
- * NOTE:
- * If you get warnings about calling constexpr __host__ functions from
- * __host__ __device__ functions in Eigen, compile with:
- *    -DCMAKE_CXX_FLAGS="-expt-relaxed-constexpr"
- * (only needed if building with NVCC/CUDA).
  ********************************************************************************/
 
 #include <Kokkos_Core.hpp>
@@ -98,7 +92,7 @@ void total_least_squares_eigen(int64_t m, int64_t n,
     A_eig(AB_h.data(), m, n+1);
 
   // 3) SVD using Eigen's JacobiSVD: get V fully
-  Eigen::JacobiSVD<Eigen::Matrix<T, Eigen::Dynamic, Eigen::Dynamic, Eigen::ColMajor>> svd(
+  Eigen::BDCSVD<Eigen::Matrix<T, Eigen::Dynamic, Eigen::Dynamic, Eigen::ColMajor>> svd(
       A_eig, Eigen::ComputeFullV);
   auto sigma = svd.singularValues();  // size = n+1
   auto Vmat  = svd.matrixV();         // (n+1) x (n+1)
