@@ -2,6 +2,10 @@ cmake_minimum_required(VERSION 3.10)
 
 project(examples)
 
+set(CMAKE_PREFIX_PATH "$ENV{HOME}/kokkos-install")
+find_package(Kokkos REQUIRED)
+find_package(KokkosKernels REQUIRED)
+
 list(APPEND CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/CMake")
 
 set(CMAKE_CXX_STANDARD 20)
@@ -49,6 +53,16 @@ target_include_directories(
 )
 target_link_libraries(
     tls_sparse_skop PUBLIC RandBLAS blaspp lapackpp 
+)
+
+set(
+    tls_sparse_skop_kokkos_cxx total-least-squares/tls_sparse_skop_kokkos.cc
+)
+add_executable(
+    tls_sparse_skop_kokkos ${tls_sparse_skop_kokkos_cxx}
+)
+target_link_libraries(
+    tls_sparse_skop_kokkos PUBLIC Kokkos::kokkos KokkosKernels::kokkoskernels RandBLAS blaspp lapackpp
 )
 
 add_executable(

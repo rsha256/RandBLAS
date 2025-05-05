@@ -39,11 +39,7 @@ Note that all CMake and system terms for BLAS++ use the name ``blaspp`` instead 
 git clone https://github.com/icl-utk-edu/blaspp.git
 mkdir blaspp-build
 cd blaspp-build
-cmake -DCMAKE_BUILD_TYPE=Release \
-    -DCMAKE_INSTALL_PREFIX=`pwd`/../blaspp-install \
-    -DCMAKE_BINARY_DIR=`pwd` \ 
-    -Dbuild_tests=OFF \
-    ../blaspp
+cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=`pwd`/../blaspp-install -DCMAKE_BINARY_DIR=`pwd` -Dbuild_tests=OFF ../blaspp
 make -j install
 ```
 
@@ -90,12 +86,7 @@ you can download, build, and install RandBLAS as follows:
 git clone git@github.com:BallisticLA/RandBLAS.git
 mkdir RandBLAS-build
 cd RandBLAS-build
-cmake -DCMAKE_BUILD_TYPE=Release \
-    -Dblaspp_DIR=`pwd`/../blaspp-install/lib/cmake/blaspp/ \
-    -DRandom123_DIR=`pwd`/../random123-install/include/ \
-    -DCMAKE_BINARY_DIR=`pwd` \
-    -DCMAKE_INSTALL_PREFIX=`pwd`/../RandBLAS-install \
-    ../RandBLAS/
+cmake -DCMAKE_BUILD_TYPE=Release -Dblaspp_DIR=`pwd`/../blaspp-install/lib64/cmake/blaspp/ -DRandom123_DIR=`pwd`/../random123-install/include/ -DCMAKE_BINARY_DIR=`pwd` -DCMAKE_INSTALL_PREFIX=`pwd`/../RandBLAS-install ../RandBLAS/
 make -j install  # might need "sudo make -j install"
 ctest  # run unit tests (only if GTest was found by CMake)
 ```

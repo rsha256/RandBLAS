@@ -18,7 +18,7 @@ The values also reflect specific install locations for RandBLAS and lapackpp rel
 command is invoked; your situation might require specifying different paths.
 
 ```shell
-cmake -DCMAKE_BINARY_DIR=`pwd` -DRandBLAS_DIR=`pwd`/../../../RandBLAS-install/lib/cmake -Dlapackpp_DIR=`pwd`/../../../lapackpp-install/lib/cmake/lapackpp ..
+cmake -DCMAKE_BINARY_DIR=`pwd` -DRandBLAS_DIR=~/rsh/RandBLAS-install/lib64/cmake -Dlapackpp_DIR=~/rsh/lapackpp-install/lib64/cmake/lapackpp ..
 ```
 
 The curious are welcome to look at the examples' CMakeLists.txt file. That file also contains 
