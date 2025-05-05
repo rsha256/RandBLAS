@@ -227,6 +227,7 @@ void total_least_squares_cpu(const int64_t m, const int64_t n,
 int main(int argc, char* argv[])
 {
   Kokkos::initialize(argc, argv);
+  std::cout << "Running on: " << Kokkos::DefaultExecutionSpace::name() << std::endl;
   {
     // 1) Parse arguments
     int64_t m = 10000, n = 500;

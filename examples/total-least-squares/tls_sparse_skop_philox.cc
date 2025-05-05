@@ -7,7 +7,7 @@
 
 // Add philox header from Random123
 #include <Random123/philox.h>
-#include <Random123/u01.h>
+#include <Random123/uniform.hpp>
 
 // BLAS++ / LAPACK++ headers for lapack::gesdd, etc.
 #include <blas.hh>
